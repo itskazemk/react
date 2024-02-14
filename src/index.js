@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+import "./index.css";
+
 const pizzaData = [
   {
     name: "Focaccia",
@@ -48,23 +50,56 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
-      <h1>Hello React! and Github</h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+    <div className="container">
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
 
-function Pizza() {
+function Header() {
   return (
-    <div>
-      <img src="pizzas/prosciutto.jpg" alt="Pizza Prosciutto" />
-      <h2>Pizza Prosciutto</h2>
-      <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
+    <header className="header">
+      <h1>Fast React Pizza Co.</h1>
+    </header>
+  );
+}
+
+function Menu() {
+  return (
+    <main className="menu">
+      <h2>our menu</h2>
+      <Pizza
+        name="Pizza Prosciutto"
+        ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
+        photoName="pizzas/prosciutto.jpg"
+        price={10}
+      />
+    </main>
+  );
+}
+
+function Pizza(probs) {
+  return (
+    <div className="pizza">
+      <img src={probs.photoName} alt={probs.name} />
+      <div>
+        <h3>{probs.name}</h3>
+        <p>{probs.ingredients}</p>
+        <span>{probs.price}</span>
+      </div>
     </div>
   );
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()}. We're Open till 11pm
+    </footer>
+  );
+  // return React.createElement("footer", null, "We're open till 11pm");
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
