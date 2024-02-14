@@ -6,6 +6,9 @@ function App() {
   const [count, setCount] = useState(0);
   const [date, setDate] = useState(new Date().toDateString());
 
+  let testData = 5;
+  console.log(testData * step);
+
   return (
     <div
       style={{
