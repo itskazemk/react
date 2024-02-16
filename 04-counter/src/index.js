@@ -1,46 +1,31 @@
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 
 function App() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [count, setCount] = useState(0);
-  const [date, setDate] = useState(new Date().toDateString());
+  // const [date, setDate] = useState(new Date().toDateString());
 
-  let testData = 5;
-  console.log(testData * step);
+  // if (step > 0) setCount((count) => count * step);
+
+  const date = new Date("june 21 2027");
+  date.setDate(date.getDate() + count);
 
   return (
-    <div
-      style={{
-        fontFamily: "roboto",
-        display: "flex",
-        flexDirection: "column",
-        alignContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignContent: "center",
-          alignItems: "center",
-        }}
-      >
+    <div>
+      <div>
         <button onClick={() => setStep((val) => val - 1)}>-</button>Step: {step}
         <button onClick={() => setStep((val) => val + 1)}>+</button>
       </div>
-      <div
-        style={{
-          display: "flex",
-          alignContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <button onClick={() => setCount((val) => val - 1)}>-</button>Count:{" "}
+      <div>
+        <button onClick={() => setCount((val) => val - step)}>-</button>Count:{" "}
         {count}
-        <button onClick={() => setCount((val) => val + 1)}>+</button>
+        <button onClick={() => setCount((val) => val + step)}>+</button>
       </div>
-      <p>30 days from now is {date}</p>
+      <p>
+        {count} days from now is {date.toDateString()}
+      </p>
     </div>
   );
 }
