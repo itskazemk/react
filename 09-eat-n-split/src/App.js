@@ -50,7 +50,17 @@ function Friend({ friend }) {
           You owe {friend.name} ${Math.abs(friend.balance)}
         </p>
       )}
-      <button>fsdfsd</button>
+      {friend.balance > 0 && (
+        <p className="green">
+          {friend.name} owes you ${Math.abs(friend.balance)}
+        </p>
+      )}
+      {friend.balance === 0 && (
+        <p>
+          You owe {friend.name} ${Math.abs(friend.balance)}
+        </p>
+      )}
+      <button className="button">Select</button>
     </li>
   );
 }
