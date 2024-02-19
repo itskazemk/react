@@ -34,6 +34,13 @@ export default function App() {
   const [friends, setFriends] = useState(initialFriends);
   const [selectedFriend, setSelectedFriend] = useState(null);
 
+  const [bill, setBill] = useState(0);
+  const [myExpense, setMyExpense] = useState(0);
+
+  function handleSetBill(amount) {
+    setBill(amount);
+  }
+
   function handleSelection(friend) {
     // setSelectedFriend(friend);
     setSelectedFriend((selectedFriend) =>
@@ -53,6 +60,7 @@ export default function App() {
           friends={friends}
           onSelection={handleSelection}
           selectedFriend={selectedFriend}
+          bill={bill}
         />
 
         {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend} />}
@@ -61,7 +69,13 @@ export default function App() {
           {showAddFriend ? "Close" : "Add friend"}
         </Button>
       </div>
-      {selectedFriend && <FormSplitBill selectedFriend={selectedFriend} />}
+      {selectedFriend && (
+        <FormSplitBill
+          selectedFriend={selectedFriend}
+          bill={bill}
+          onBill={handleSetBill}
+        />
+      )}
     </div>
   );
 }
