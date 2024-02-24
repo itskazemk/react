@@ -10,7 +10,6 @@
   ],
   "parser": "jsx-eslint-parser", // Updated parser for JSX
   "parserOptions": {
-    // "requireConfigFile": false, // Disable config file checking
     "ecmaVersion": 2021, // Using specific ECMAScript version
     "sourceType": "module",
     "ecmaFeatures": {
