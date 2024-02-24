@@ -8,7 +8,7 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
-  "parser": "react-scripts/node_modules/babel-eslint", // Updated parser for JSX
+  "parser": "@babel/eslint-parser", // for using JSX
   "parserOptions": {
     "ecmaVersion": 2021, // Using specific ECMAScript version
     "sourceType": "module",
