@@ -5,6 +5,5 @@
   "bracketSpacing": true,
   "arrowParens": "always",
   "tabWidth": 2,
-  "endOfLine": "auto",
-  "singleAttributePerLine": true
+  "endOfLine": "auto"
 }
