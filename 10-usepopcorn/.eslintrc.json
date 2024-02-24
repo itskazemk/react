@@ -3,11 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "airbnb",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["airbnb", "plugin:react/recommended", "plugin:prettier/recommended"],
   "parser": "jsx-eslint-parser", // Updated parser for JSX
   "parserOptions": {
     "ecmaVersion": 2021, // Using specific ECMAScript version
