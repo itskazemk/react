@@ -54,7 +54,7 @@ const average = (arr) =>
 const apiKey = `4390fed4`;
 
 export default function App() {
-  const [query, setQuery] = useState("leftovers");
+  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -320,6 +320,19 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     onAddWatched(newWatchedMovie);
     onCloseMovie();
   }
+
+  useEffect(() => {
+    function callback(e) {
+      if (e.code === "Escape") {
+        onCloseMovie();
+      }
+    }
+    document.addEventListener("keydown", callback);
+
+    return () => {
+      document.removeEventListener("keydown", callback);
+    };
+  }, [onCloseMovie]);
 
   useEffect(() => {
     async function getMovieDetails() {
