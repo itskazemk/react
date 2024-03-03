@@ -59,3 +59,16 @@ export function useMovies(query) {
 
   return { movies, isLoading, error };
 }
+
+export function useLocalStorageState(initialState, storageKey) {
+  const [value, setValue] = useState(() => {
+    const storedValue = localStorage.getItem(storageKey);
+    return storedValue ? JSON.parse(storedValue) : initialState;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(storageKey, JSON.stringify(value));
+  }, [value, storageKey]);
+
+  return [value, setValue];
+}
