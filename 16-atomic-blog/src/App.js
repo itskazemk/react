@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { PostProvider, usePosts } from "./PostContext";
 import Test from "./Test";
@@ -22,21 +22,21 @@ function App() {
   );
 
   return (
-    <PostProvider>
-      <section>
-        <button
-          onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
-          className="btn-fake-dark-mode"
-        >
-          {isFakeDark ? "☀️" : "🌙"}
-        </button>
+    <section>
+      <button
+        onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+        className="btn-fake-dark-mode"
+      >
+        {isFakeDark ? "☀️" : "🌙"}
+      </button>
 
+      <PostProvider>
         <Header />
         <Main />
         <Archive />
         <Footer />
-      </section>
-    </PostProvider>
+      </PostProvider>
+    </section>
   );
 }
 
@@ -72,14 +72,14 @@ function Results() {
   return <p>🚀 {posts.length} atomic posts found</p>;
 }
 
-function Main() {
+const Main = memo(function Main() {
   return (
     <main>
       <FormAddPost />
       <Posts />
     </main>
   );
-}
+});
 
 function Posts() {
   return (
