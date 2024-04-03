@@ -2,8 +2,9 @@ import Map from "../components/Map";
 import Sidebar from "../components/Sidebar";
 import styles from "./AppLayout.module.css";
 import User from "../components/User.jsx";
+import { memo } from "react";
 
-function AppLayout() {
+const AppLayout = memo(function AppLayout() {
   return (
     <div className={styles.app}>
       <Sidebar />
@@ -11,6 +12,6 @@ function AppLayout() {
       <User />
     </div>
   );
-}
+});
 
 export default AppLayout;
