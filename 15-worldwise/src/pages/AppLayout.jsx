@@ -1,8 +1,8 @@
-import styles from "./AppLayout.module.css";
-import User from "../components/User.jsx";
 import { memo } from "react";
-import Sidebar from "../components/Sidebar";
 import Map from "../components/Map";
+import Sidebar from "../components/Sidebar";
+import User from "../components/User.jsx";
+import styles from "./AppLayout.module.css";
 
 const AppLayout = memo(function AppLayout() {
 	return (
