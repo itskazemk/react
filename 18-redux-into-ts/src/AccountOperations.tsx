@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 function AccountOperations() {
-  const [depositAmount, setDepositAmount] = useState("");
-  const [withdrawalAmount, setWithdrawalAmount] = useState("");
-  const [loanAmount, setLoanAmount] = useState("");
+  const [depositAmount, setDepositAmount] = useState(0);
+  const [withdrawalAmount, setWithdrawalAmount] = useState(0);
+  const [loanAmount, setLoanAmount] = useState(0);
   const [loanPurpose, setLoanPurpose] = useState("");
   const [currency, setCurrency] = useState("USD");
 
