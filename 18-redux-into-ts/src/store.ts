@@ -1,19 +1,31 @@
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 
-interface initialState {
+interface initialStateAccount {
   balance: number;
   loan: number;
   loanPurpose: string;
 }
 
-const initialState = {
+const initialStateAccount = {
   balance: 0,
   loan: 0,
   loanPurpose: "",
 };
 
-function reducer(
-  state: initialState = initialState,
+interface initialStateCustomer {
+  fullName: string;
+  nationalId: string;
+  createdAt: string;
+}
+
+const initialStateCustomer = {
+  fullName: "",
+  nationalId: "",
+  createdAt: "",
+};
+
+function accountReducer(
+  state: initialStateAccount = initialStateAccount,
   action: { type: string; payload: any }
 ) {
   switch (action.type) {
@@ -25,11 +37,11 @@ function reducer(
 
     case "account/requestLoan":
       if (state.loan > 0) return { ...state };
-      // TODO
       return {
         ...state,
         loan: action.payload.amount,
         loanPurpose: action.payload.purpose,
+        balance: action.payload.amount,
       };
 
     case "account/payLoan":
@@ -45,15 +57,74 @@ function reducer(
   }
 }
 
-const store = createStore(reducer);
+function customerReducer(
+  state: initialStateCustomer = initialStateCustomer,
+  action: { type: string; payload: any }
+) {
+  switch (action.type) {
+    case "customer/createCustomer":
+      return {
+        ...state,
+        fullName: action.payload.fullName,
+        nationalId: action.payload.nationalId,
+        createdAt: action.payload.createdAt,
+      };
 
-store.dispatch({ type: "account/deposit", payload: 500 });
+    case "customer/updateName":
+      return { ...state, fullName: action.payload };
 
-console.log(store.getState());
-store.dispatch({ type: "account/withdraw", payload: 200 });
-console.log(store.getState());
-store.dispatch({
-  type: "account/requestLoan",
-  payload: { amount: 1000, purpose: "buy a car" },
+    default:
+      break;
+  }
+}
+
+const rootReducer = combineReducers({
+  account: accountReducer,
+  customer: customerReducer,
 });
-console.log(store.getState());
+
+const store = createStore(rootReducer);
+
+// store.dispatch({ type: "account/deposit", payload: 500 });
+
+// console.log(store.getState());
+// store.dispatch({ type: "account/withdraw", payload: 200 });
+// console.log(store.getState());
+// store.dispatch({
+//   type: "account/requestLoan",
+//   payload: { amount: 1000, purpose: "buy a car" },
+// });
+// console.log(store.getState());
+
+// store.dispatch({
+//   type: "account/payLoan",
+// });
+
+function deposit(amount: number) {
+  return { type: "account/deposit", payload: amount };
+}
+function withdraw(amount: number) {
+  return { type: "account/withdraw", payload: amount };
+}
+function requestLoan(amount: number, purpose: string) {
+  return {
+    type: "account/requestLoan",
+    payload: { amount: amount, purpose: purpose },
+  };
+}
+function payLoan() {
+  return {
+    type: "account/payLoan",
+  };
+}
+
+function createCustomer(fullName: string, nationalId: string) {
+  return {
+    type: "customer/createCustomer",
+    payload: { fullName, nationalId, createdAt: new Date().toISOString() },
+  };
+}
+
+function updateName(fullName: string) {
+  return { type: "customer/updateName", payload: fullName };
+}
