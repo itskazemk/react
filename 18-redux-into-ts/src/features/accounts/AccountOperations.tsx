@@ -24,7 +24,6 @@ function AccountOperations() {
     if (!depositAmount) return;
 
     // todo fix this error
-    // @ts-expect-error "i don't know why"
     dispatch(deposit(depositAmount, currency));
     setDepositAmount(0);
     setCurrency("USD");
