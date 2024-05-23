@@ -22,8 +22,12 @@ function AccountOperations() {
 
   function handleDeposit() {
     if (!depositAmount) return;
-    dispatch(deposit(depositAmount));
+
+    // todo fix this error
+    // @ts-expect-error "i don't know why"
+    dispatch(deposit(depositAmount, currency));
     setDepositAmount(0);
+    setCurrency("USD");
   }
 
   function handleWithdrawal() {
@@ -64,7 +68,9 @@ function AccountOperations() {
             <option value="GBP">British Pound</option>
           </select>
 
-          <button onClick={handleDeposit}>Deposit {depositAmount}</button>
+          <button onClick={handleDeposit} disabled={account.isLoading}>
+            {account.isLoading ? "Converting..." : `Deposit ${depositAmount}`}
+          </button>
         </div>
 
         <div>
