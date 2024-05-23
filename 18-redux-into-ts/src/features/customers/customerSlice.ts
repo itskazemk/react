@@ -12,7 +12,7 @@ export const initialStateCustomer = {
 
 export default function customerReducer(
   state: InitialStateCustomer = initialStateCustomer,
-  action: { type: string; payload: any }
+  action
 ) {
   switch (action.type) {
     case "customer/createCustomer":
